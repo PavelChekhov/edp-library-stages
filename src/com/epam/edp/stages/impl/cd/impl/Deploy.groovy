@@ -174,8 +174,19 @@ class Deploy {
         codebase.cdPipelineName = context.job.pipelineName
         codebase.cdPipelineStageName = context.job.stageName
 
+        echo ${refspec}
+        echo ${fullImageName}
+        echo ${codebase.name}
+        echo ${gitCodebaseUrl}
+        echo ${codebaseDir}
+        echo ${codebase.version}
+        echo ${codebase.gitServer}
+        echo ${codebase.route_path}
+        echo ${codebase.route_site}
+        echo ${codebase.stable}
+
         def fullImageName = context.platform.createFullImageName(context.environment.config.dockerRegistryHost,
-                context.job.ciProject, codebase.name)
+                context.job.ciProject, "${codebase.name}-${refspec}")
         def parametersMap = [
                 ['name': 'image.repository', 'value': fullImageName],
                 ['name': 'image.tag', 'value': "${codebase.version}"],
