@@ -168,10 +168,6 @@ class Deploy {
         if (!checkTemplateExists(templateName, deployTemplatesPath)) {
             return
         }
-    script.println("[JENKINS][DEBUG] ${codebase.name}")
-    script.println("[JENKINS][DEBUG] ${codebase.version}")
-    script.println("[JENKINS][DEBUG] ${codebase.stable}")
-    script.println("[JENKINS][DEBUG] ${codebase.latest}")
         if (codebase.need_database)
             context.platform.addSccToUser(codebase.name, "anyuid", context.job.deployProject)
 
@@ -179,7 +175,7 @@ class Deploy {
         codebase.cdPipelineStageName = context.job.stageName
 
         def fullImageName = context.platform.createFullImageName(context.environment.config.dockerRegistryHost,
-                context.job.ciProject, codebase.name-object.inputIs)
+                context.job.ciProject, codebase.name-inputIs)
         def parametersMap = [
                 ['name': 'image.repository', 'value': fullImageName],
                 ['name': 'image.tag', 'value': "${codebase.version}"],
