@@ -168,14 +168,9 @@ class Deploy {
         if (!checkTemplateExists(templateName, deployTemplatesPath)) {
             return
         }
-    script.println("[JENKINS][DEBUG] ${fullImageName}")
     script.println("[JENKINS][DEBUG] ${codebase.name}")
-    script.println("[JENKINS][DEBUG] ${gitCodebaseUrl}")
     script.println("[JENKINS][DEBUG] ${codebaseDir}")
     script.println("[JENKINS][DEBUG] ${codebase.version}")
-    script.println("[JENKINS][DEBUG] ${codebase.gitServer}")
-    script.println("[JENKINS][DEBUG] ${codebase.route_path}")
-    script.println("[JENKINS][DEBUG] ${codebase.route_site}")
     script.println("[JENKINS][DEBUG] ${codebase.stable}")
     script.println("[JENKINS][DEBUG] ${codebase.latest}")
         if (codebase.need_database)
