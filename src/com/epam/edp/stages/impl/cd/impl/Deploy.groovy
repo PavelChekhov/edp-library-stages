@@ -169,7 +169,6 @@ class Deploy {
             return
         }
     script.println("[JENKINS][DEBUG] ${codebase.name}")
-    script.println("[JENKINS][DEBUG] ${codebaseDir}")
     script.println("[JENKINS][DEBUG] ${codebase.version}")
     script.println("[JENKINS][DEBUG] ${codebase.stable}")
     script.println("[JENKINS][DEBUG] ${codebase.latest}")
