@@ -174,20 +174,31 @@ class Deploy {
         codebase.cdPipelineName = context.job.pipelineName
         codebase.cdPipelineStageName = context.job.stageName
 
-        echo ${refspec}
-        echo ${fullImageName}
-        echo ${codebase.name}
-        echo ${gitCodebaseUrl}
-        echo ${codebaseDir}
-        echo ${codebase.version}
-        echo ${codebase.gitServer}
-        echo ${codebase.route_path}
-        echo ${codebase.route_site}
-        echo ${codebase.stable}
-        echo ${codebase.latest}
+    echo ${refspec}
+    echo ${fullImageName}
+    echo ${codebase.name}
+    echo ${gitCodebaseUrl}
+    echo ${codebaseDir}
+    echo ${codebase.version}
+    echo ${codebase.gitServer}
+    echo ${codebase.route_path}
+    echo ${codebase.route_site}
+    echo ${codebase.stable}
+    echo ${codebase.latest}
+    script.println("echo ${refspec}")
+    script.println("echo ${fullImageName}")
+    script.println("echo ${codebase.name}")
+    script.println("echo ${gitCodebaseUrl}")
+    script.println("echo ${codebaseDir}")
+    script.println("echo ${codebase.version}")
+    script.println("echo ${codebase.gitServer}")
+    script.println("echo ${codebase.route_path}")
+    script.println("echo ${codebase.route_site}")
+    script.println("echo ${codebase.stable}")
+    script.println("echo ${codebase.latest}")
 
         def fullImageName = context.platform.createFullImageName(context.environment.config.dockerRegistryHost,
-                context.job.ciProject, "${codebase.name}-${refspec}")
+                context.job.ciProject, "${codebase.name}-object.inputIs")
         def parametersMap = [
                 ['name': 'image.repository', 'value': fullImageName],
                 ['name': 'image.tag', 'value': "${codebase.version}"],
