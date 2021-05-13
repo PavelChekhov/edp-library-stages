@@ -114,17 +114,6 @@ class Deploy {
         script.println("[JENKINS][DEBUG] host: ${host}")
         script.println("[JENKINS][DEBUG] sshPort: ${sshPort}")
         script.println("[JENKINS][DEBUG] credentialsId: ${credentialsId}")
-        script.println("[JENKINS][DEBUG] ${refspec}")
-        script.println("[JENKINS][DEBUG] ${fullImageName}")
-        script.println("[JENKINS][DEBUG] ${codebase.name}")
-        script.println("[JENKINS][DEBUG] ${gitCodebaseUrl}")
-        script.println("[JENKINS][DEBUG] ${codebaseDir}")
-        script.println("[JENKINS][DEBUG] ${codebase.version}")
-        script.println("[JENKINS][DEBUG] ${codebase.gitServer}")
-        script.println("[JENKINS][DEBUG] ${codebase.route_path}")
-        script.println("[JENKINS][DEBUG] ${codebase.route_site}")
-        script.println("[JENKINS][DEBUG] ${codebase.stable}")
-        script.println("[JENKINS][DEBUG] ${codebase.latest}")
 
         def repoPath = getRepositoryPath(codebase)
         script.println("[JENKINS][DEBUG] Repository path: ${repoPath}")
@@ -173,12 +162,22 @@ class Deploy {
         return deploymentWorkloadsList
     }
 
+
     def deployCodebaseHelmTemplate(context, codebase, deployTemplatesPath) {
         def templateName = "Chart"
         if (!checkTemplateExists(templateName, deployTemplatesPath)) {
             return
         }
-
+    script.println("[JENKINS][DEBUG] ${fullImageName}")
+    script.println("[JENKINS][DEBUG] ${codebase.name}")
+    script.println("[JENKINS][DEBUG] ${gitCodebaseUrl}")
+    script.println("[JENKINS][DEBUG] ${codebaseDir}")
+    script.println("[JENKINS][DEBUG] ${codebase.version}")
+    script.println("[JENKINS][DEBUG] ${codebase.gitServer}")
+    script.println("[JENKINS][DEBUG] ${codebase.route_path}")
+    script.println("[JENKINS][DEBUG] ${codebase.route_site}")
+    script.println("[JENKINS][DEBUG] ${codebase.stable}")
+    script.println("[JENKINS][DEBUG] ${codebase.latest}")
         if (codebase.need_database)
             context.platform.addSccToUser(codebase.name, "anyuid", context.job.deployProject)
 
