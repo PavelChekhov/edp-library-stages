@@ -184,6 +184,7 @@ class Deploy {
         echo ${codebase.route_path}
         echo ${codebase.route_site}
         echo ${codebase.stable}
+        echo ${codebase.latest}
 
         def fullImageName = context.platform.createFullImageName(context.environment.config.dockerRegistryHost,
                 context.job.ciProject, "${codebase.name}-${refspec}")
