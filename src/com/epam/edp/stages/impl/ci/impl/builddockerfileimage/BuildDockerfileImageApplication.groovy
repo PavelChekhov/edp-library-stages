@@ -51,11 +51,14 @@ class BuildDockerfileImageApplication {
                 createOrUpdateBuildConfig(context.codebase, buildconfigName, imageUrl)
 
                 script.dir(context.codebase.deployableModuleDir) {
-                    script.sh "cp ${context.workDir}/Dockerfile ${context.workDir}/target/"
-                    script.sh "cd ${context.workDir}/target/ && tar -cf ${context.codebase.name}.tar *"
+                    if ("${context.workDir}" != "${context.codebase.deployableModuleDir}") {
+                        script.sh "cp ${context.workDir}/Dockerfile ${context.codebase.deployableModuleDir}/"
+                    }
+
+                    script.sh "tar -cf ${context.codebase.name}.tar *"
 
                     def buildResult = script.openshift.selector(buildConfigApi, "${buildconfigName}").startBuild(
-                            "--from-archive=${context.workDir}/target/${context.codebase.name}.tar",
+                            "--from-archive=${context.codebase.name}.tar",
                             "--wait=true")
                     resultTag = buildResult.object().status.output.to.imageDigest
                 }
