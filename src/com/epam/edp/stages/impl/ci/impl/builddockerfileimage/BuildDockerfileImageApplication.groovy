@@ -58,7 +58,7 @@ class BuildDockerfileImageApplication {
                     script.sh "tar -cf ${context.codebase.name}.tar *"
 
                     def buildResult = script.openshift.selector(buildConfigApi, "${buildconfigName}").startBuild(
-                            "--from-archive=${context.codebase.name}.tar",
+                            "--from-archive=target/${context.codebase.name}.tar",
                             "--wait=true")
                     resultTag = buildResult.object().status.output.to.imageDigest
                 }
