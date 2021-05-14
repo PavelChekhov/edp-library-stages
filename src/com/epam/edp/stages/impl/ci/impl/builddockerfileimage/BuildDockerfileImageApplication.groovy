@@ -55,7 +55,7 @@ class BuildDockerfileImageApplication {
                         script.sh "cp ${context.workDir}/Dockerfile ${context.codebase.deployableModuleDir}/"
                     }
 
-                    script.sh "tar -cf ${context.codebase.name}.tar *"
+                    script.sh "tar -cf target/${context.codebase.name}.tar *"
 
                     def buildResult = script.openshift.selector(buildConfigApi, "${buildconfigName}").startBuild(
                             "--from-archive=target/${context.codebase.name}.tar",
