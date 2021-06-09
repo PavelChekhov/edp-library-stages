@@ -25,10 +25,9 @@ class PromoteImages {
     void run(context) {
         script.openshift.withCluster() {
             script.openshift.withProject() {
-                script.println("[JENKINS][DEBUG] ${codebase.inputIs}")
-                script.println("[JENKINS][DEBUG] ${codebase.version}")
-                script.println("[JENKINS][DEBUG] ${dockerRegistryHost}/${codebase.outputIs} ")
                 context.job.codebasesList.each() { codebase ->
+                    script.println("[JENKINS][DEBUG] ${codebase.inputIs}")
+                    script.println("[JENKINS][DEBUG] ${codebase.version}")
                     if ((codebase.name in context.job.applicationsToPromote) && (codebase.version != "No deploy") && (codebase.version != "noImageExists")) {
                         script.openshift.tag("${codebase.inputIs}:${codebase.version}",
                                 "${codebase.outputIs}:${codebase.version}")
@@ -37,6 +36,7 @@ class PromoteImages {
                         context.workDir.deleteDir()
 
                         def dockerRegistryHost = context.platform.getJsonPathValue("edpcomponent", "docker-registry", ".spec.url")
+                        script.println("[JENKINS][DEBUG] ${dockerRegistryHost}/${codebase.outputIs} ")
                         if (!dockerRegistryHost) {
                             script.error("[JENKINS][ERROR] Couldn't get docker registry server")
                         }
