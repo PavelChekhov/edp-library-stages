@@ -23,7 +23,6 @@ class PromoteImagesECR {
     Script script
 
     void run(context) {
-        script.println("ALIVE_ECR")
         def dockerRegistryHost = context.platform.getJsonPathValue("edpcomponent", "docker-registry", ".spec.url")
         if (!dockerRegistryHost)
             script.error("[JENKINS][ERROR] Couldn't get docker registry server")
