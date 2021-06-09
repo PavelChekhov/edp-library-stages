@@ -46,7 +46,7 @@ class PromoteImages {
                         }
 
                         new CodebaseImageStreams(context, script)
-                                .UpdateOrCreateCodebaseImageStream(codebase.outputIs, "${dockerRegistryHost}/${codebase.outputIs}", codebase.version)
+                                .UpdateOrCreateCodebaseImageStream(codebase.outputIs, "${dockerRegistryHost}/norn-afsp-edp/${codebase.outputIs}", codebase.version)
 
                         script.println("[JENKINS][INFO] Image ${codebase.inputIs}:${codebase.version} has been promoted to ${codebase.outputIs}")
                     }
