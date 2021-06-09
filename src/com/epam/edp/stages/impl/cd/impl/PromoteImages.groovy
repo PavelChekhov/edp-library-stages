@@ -25,6 +25,7 @@ class PromoteImages {
     void run(context) {
         script.openshift.withCluster() {
             script.openshift.withProject() {
+                script.println("ALIVE")
                 context.job.codebasesList.each() { codebase ->
                     if ((codebase.name in context.job.applicationsToPromote) && (codebase.version != "No deploy") && (codebase.version != "noImageExists")) {
                         script.openshift.tag("${codebase.inputIs}:${codebase.version}",
