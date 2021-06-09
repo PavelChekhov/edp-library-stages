@@ -31,7 +31,7 @@ class PromoteImages {
                         script.println("[JENKINS][DEBUG] 2")
                         script.println("[JENKINS][DEBUG] ${codebase.inputIs}:${codebase.version}")
                         script.println("[JENKINS][DEBUG] ${codebase.outputIs}")
-                        script.openshift.tag("norn-afsp-edp/${codebase.inputIs}:${codebase.version}",
+                        script.openshift.tag("docker-group-norn-afsp-edp.apps.dev-test.norn-afsp.projects.epam.com/norn-afsp-edp/${codebase.inputIs}:${codebase.version}",
                                 "${codebase.outputIs}:${codebase.version}")
                         script.println("[JENKINS][DEBUG] 3")
                         context.workDir = new File("/tmp/${RandomStringUtils.random(10, true, true)}")
