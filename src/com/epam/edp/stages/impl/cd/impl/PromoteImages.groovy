@@ -29,6 +29,8 @@ class PromoteImages {
                     script.println("[JENKINS][DEBUG] 1")
                     if ((codebase.name in context.job.applicationsToPromote) && (codebase.version != "No deploy") && (codebase.version != "noImageExists")) {
                         script.println("[JENKINS][DEBUG] 2")
+                        script.println("[JENKINS][DEBUG] ${codebase.inputIs}:${codebase.version}")
+                        script.println("[JENKINS][DEBUG] ${codebase.outputIs}")
                         script.openshift.tag("${codebase.inputIs}:${codebase.version}",
                                 "${codebase.outputIs}:${codebase.version}")
                         script.println("[JENKINS][DEBUG] 3")
