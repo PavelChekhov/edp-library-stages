@@ -40,6 +40,7 @@ class PromoteImages {
 
                         script.println("[JENKINS][DEBUG] 5")
                         def dockerRegistryHost = context.platform.getJsonPathValue("edpcomponent", "docker-registry", ".spec.url")
+                        script.println("[JENKINS][DEBUG]!!! ${dockerRegistryHost}/${codebase.outputIs}")
                         if (!dockerRegistryHost) {
                             script.error("[JENKINS][ERROR] Couldn't get docker registry server")
                         }
