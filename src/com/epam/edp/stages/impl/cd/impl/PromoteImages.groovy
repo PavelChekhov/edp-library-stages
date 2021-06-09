@@ -30,14 +30,13 @@ class PromoteImages {
                     if ((codebase.name in context.job.applicationsToPromote) && (codebase.version != "No deploy") && (codebase.version != "noImageExists")) {
                         script.println("[JENKINS][DEBUG] 2")
                         script.openshift.tag("${codebase.inputIs}:${codebase.version}",
-                                script.println("[JENKINS][DEBUG] 3")
                                 "${codebase.outputIs}:${codebase.version}")
-                        script.println("[JENKINS][DEBUG] 4")
+                        script.println("[JENKINS][DEBUG] 3")
                         context.workDir = new File("/tmp/${RandomStringUtils.random(10, true, true)}")
-                        script.println("[JENKINS][DEBUG] 5")
+                        script.println("[JENKINS][DEBUG] 4")
                         context.workDir.deleteDir()
 
-                        script.println("[JENKINS][DEBUG] 6")
+                        script.println("[JENKINS][DEBUG] 5")
                         def dockerRegistryHost = context.platform.getJsonPathValue("edpcomponent", "docker-registry", ".spec.url")
                         if (!dockerRegistryHost) {
                             script.error("[JENKINS][ERROR] Couldn't get docker registry server")
